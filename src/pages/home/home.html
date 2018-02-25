@@ -8,11 +8,38 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <h2>{{ group?.name }}</h2>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <!-- <ion-card *ngFor="let post of posts">
+    <img class="post-image" [src]="post.full_picture"/>
+    <ion-card-content>
+      <p>
+        {{ post.message }}
+      </p>
+    </ion-card-content>
+  </ion-card> -->
+
+  <ion-card *ngFor="let post of posts">
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="group?.groupImage">
+      </ion-avatar>
+      <h2>{{ group?.name }}</h2>
+      <p>{{ post.created_time }}</p>
+    </ion-item>
+  
+    <img class="post-image" [src]="post.full_picture">
+  
+    <ion-card-content *ngIf="post.message">
+      {{ post.message }}
+    </ion-card-content>
+  
+  </ion-card>
+  
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
